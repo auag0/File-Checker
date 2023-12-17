@@ -1,7 +1,7 @@
 package com.anago.filechecker
 
+import android.net.Uri
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -26,9 +26,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private val openLauncher =
-        registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
+        registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri: Uri? ->
             uri?.let { safeUri ->
                 viewModel.handleOpenFileFromUri(safeUri)
-            } ?: Toast.makeText(this, "ファイルが見つかりません！", Toast.LENGTH_SHORT).show()
+            }
         }
 }
